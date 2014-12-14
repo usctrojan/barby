@@ -26,15 +26,15 @@ module Barby
       code = barcode.data.match(/\{:code=>"(.*)"}/)[1]
       with_options opts do
         case opts[:use]
-          when 'rects' then bars = bars_to_rects
-          when 'path'  then bars = bars_to_path
+        when 'rects' then bars = bars_to_rects
+        when 'path'  then bars = bars_to_path
         else
           xdim_odd = (xdim % 2 == 1)
           bars = xdim_odd ? bars_to_rects : bars_to_path
         end
 
 
-       graphic = <<-"EOT"
+        graphic = <<-"EOT"
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="#{svg_width(opts)}px" height="#{svg_height(opts) + 8}px" viewBox="0 0 #{svg_width(opts)} #{svg_height(opts) + 8}" version="1.1">
 <title>#{escape title}</title>
@@ -43,14 +43,16 @@ module Barby
 <g id="barcode" fill="black">
 #{bars}
 </g></g>
-EOT
+        EOT
 
-graphic += <<-"EOT"
+        if opts[:show_numbers] == true or opts[:numbers] == true
+          graphic += <<-"EOT"
 <text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{svg_height(opts) + 6})" text-anchor="middle" font-size="14">#{code}</text>
-</svg> 
-EOT if opts[:show_numbers] == true or opts[:numbers] == true
-
-graphic
+</svg>
+          EOT
+        end
+        
+        graphic
       end
     end
 
@@ -207,7 +209,7 @@ graphic
     end
 
 
-  private
+    private
 
     def _xmargin
       @xmargin || _margin
