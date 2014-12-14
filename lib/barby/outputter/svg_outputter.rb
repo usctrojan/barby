@@ -42,7 +42,7 @@ module Barby
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="#{svg_width(opts)}px" height="#{height}px" viewBox="0 0 #{svg_width(opts)} #{height}" version="1.1">
 <title>#{escape title}</title>
 <g id="canvas" #{transform(opts)}>
-<rect x="0" y="0" width="#{full_width}px" height="#{full_height}px" fill="white" />
+<rect x="0" y="0" width="#{full_width}px" height="#{height}px" fill="white" />
 <g id="barcode" fill="black">
 #{bars}
 </g></g>
