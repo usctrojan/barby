@@ -41,7 +41,7 @@ module Barby
 <g id="barcode" fill="black">
 #{bars}
 </g></g>
-</svg>
+</svg> fdsa fdsfd
 EOT
       end
     end
