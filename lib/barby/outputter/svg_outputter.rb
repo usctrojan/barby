@@ -23,6 +23,7 @@ module Barby
 
 
     def to_svg(opts={})
+      code = barcode.data.match(/\{:code=>"(.*)"}/)[1]
       with_options opts do
         case opts[:use]
           when 'rects' then bars = bars_to_rects
@@ -43,7 +44,7 @@ module Barby
 </g></g>
 
 
-<text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{svg_height(opts) + 8})" text-anchor="middle" font-size="14">34805834</text>
+<text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{svg_height(opts) + 6})" text-anchor="middle" font-size="14">#{code}</text>
 </svg> 
 EOT
       end
