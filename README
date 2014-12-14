@@ -1,5 +1,5 @@
-CUSTOMIZED BARBY: added numbers such that it appears below barcode in SVG mode
-
+CUSTOMIZED BARBY: added barcode numbers such that it appears below barcode in SVG mode
+--example: barcode.to_svg(:show_numbers => true)
 
 *** NEW REQUIRE POLICY ***
 
