@@ -33,7 +33,7 @@ module Barby
           bars = xdim_odd ? bars_to_rects : bars_to_path
         end
 
-        show_code = opts[:show_numbers] == true or opts[:numbers] == true or opts[:show_code] == true or opts[:code] == true ? true : false
+        show_code = opts[:show_numbers].present? or opts[:numbers].present? or opts[:show_code].present? or opts[:code].present? ? true : false
         height = show_code ? (svg_height(opts) + 14) : svg_height(opts)
 
 
