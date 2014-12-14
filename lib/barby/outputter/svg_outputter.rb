@@ -33,10 +33,13 @@ module Barby
           bars = xdim_odd ? bars_to_rects : bars_to_path
         end
 
+        show_code = opts[:show_numbers] == true or opts[:numbers] == true or opts[:show_code] == true or opts[:code] == true ? true : false
+        height = show_code ? (svg_height(opts) + 14) : svg_height(opts)
+
 
         graphic = <<-"EOT"
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="#{svg_width(opts)}px" height="#{svg_height(opts) + 10}px" viewBox="0 0 #{svg_width(opts)} #{svg_height(opts) + 10}" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="#{svg_width(opts)}px" height="#{height}px" viewBox="0 0 #{svg_width(opts)} #{height}" version="1.1">
 <title>#{escape title}</title>
 <g id="canvas" #{transform(opts)}>
 <rect x="0" y="0" width="#{full_width}px" height="#{full_height}px" fill="white" />
@@ -45,13 +48,13 @@ module Barby
 </g></g>
         EOT
 
-        if opts[:show_numbers] == true or opts[:numbers] == true or opts[:show_code] == true or opts[:code] == true
+        if show_code
           graphic += <<-"EOT"
-<text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{svg_height(opts) + 6})" text-anchor="middle" font-size="14">#{code}</text>
+<text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{height - 8})" text-anchor="middle" font-size="14">#{code}</text>
 </svg>
           EOT
         end
-        
+
         graphic
       end
     end
