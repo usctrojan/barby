@@ -45,7 +45,7 @@ module Barby
 </g></g>
         EOT
 
-        if opts[:show_numbers] == true or opts[:numbers] == true
+        if opts[:show_numbers] == true or opts[:numbers] == true opts[:show_code] == true opts[:code] == true
           graphic += <<-"EOT"
 <text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{svg_height(opts) + 6})" text-anchor="middle" font-size="14">#{code}</text>
 </svg>
