@@ -47,7 +47,7 @@ module Barby
 #{bars}
 </g></g>
         EOT
-
+debugger
         if show_code
           graphic += <<-"EOT"
 <text xmlns="http://www.w3.org/2000/svg" transform="matrix(1 0 0 1 #{svg_width(opts) / 2} #{height - 8})" text-anchor="middle" font-size="14">#{code}</text>
